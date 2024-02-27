@@ -1,8 +1,11 @@
-// Create a function that displays a string of
-//  characters on the standard output.
+
+// Create a function that counts and
+//  returns the number of characters in a string.
 // • Here’s how it should be prototyped :
+
 #include <unistd.h>
-int ft_strlen(char *str)
+    int
+    ft_strlen(char *str)
 {
      int i = 0;
      char c;
