@@ -25,6 +25,6 @@ int main(void)
      ft_rev_int_tab(tab, size);
      int i = 0;
      while (i < size)
-          printf("%d", tab[i++]);
+          printf("%d", tab[i++]);// print at i then increment at next round
      return (0);
 }
