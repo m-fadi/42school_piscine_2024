@@ -1,13 +1,14 @@
 // Create a function that transforms every letter to uppercase.
 // • Here’s how it should be prototyped :
 
-    char *
-    ft_strupcase(char *str);
+char *ft_strupcase(char *str)
 {
+     char *ptr = str;
      while (*str)
-          if (*str <= 'Z' && *str >= 'A')
-               str++;
-          else
-               return (0);
-     return (1);
+     {
+          if (*str <= 'z' && *str >= 'a')
+               *str -= 32;
+          str++;
+     }
+     return (ptr);
 }
