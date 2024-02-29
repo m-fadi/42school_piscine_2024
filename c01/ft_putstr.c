@@ -2,17 +2,18 @@
 //  characters on the standard output.
 
 #include <unistd.h>
-void ft_putstr(char *str)
+
+void	ft_putstr(char *str)
 {
-     while (*str)
-     {
-          write(1, str++, 1);
-     }
-     write(1, "\n", 1);
+	while (*str)
+	{
+		write(1, str++, 1);
+	}
+	write(1, "\n", 1);
 }
 
-int main(void)
+int	main(void)
 {
-     char *str = "helloo";
-     ft_putstr(str);
+	char *str = "helloo";
+	ft_putstr(str);
 }
