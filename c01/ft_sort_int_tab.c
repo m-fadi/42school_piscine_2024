@@ -5,19 +5,33 @@
 #include <unistd.h>
 
 // merge sort
-void ft_sort_int_tab(int *tab, int size)
+void	ft_sort_int_tab(int *tab, int size)
 {
-     int mid = size / 2;
+	int	mid;
+
+	mid = size / 2;
 }
 
-int main(void)
+void	merge_sort(int *tab, int l, int r)
 {
-     int tab[] = {0, 1, 2, 3, 4, 5, 6, 7};
-     int size = sizeof(tab) / sizeof(tab[0]);
-     int i = 0;
-     ft_sort_int_tab(tab, size);
-     while (size)
-     {
-          printf("%d\n", tab[size--]);
-     }
+	int	m;
+
+	if (l < r)
+	{
+		m = l + (r - l) / 2;
+		merge_sort(tab, l, m);
+		merge_sort(tab, m, r);
+	}
 }
+
+// int main(void)
+// {
+//      int tab[] = {0, 1, 2, 3, 4, 5, 6, 7};
+//      int size = sizeof(tab) / sizeof(tab[0]);
+//      int i = 0;
+//      merge_sort(tab, 0, size - 1);
+//      while (size)
+//      {
+//           printf("%d\n", tab[size--]);
+//      }
+// }
