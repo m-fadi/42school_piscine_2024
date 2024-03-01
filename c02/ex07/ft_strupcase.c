@@ -12,3 +12,10 @@ char *ft_strupcase(char *str)
      }
      return (ptr);
 }
+// #include <stdio.h>
+// int main(void)
+// {
+//      char *str = "sAlut, comment tu vas";
+//      ft_strupcase(str);
+//      // printf("%s", str);
+// }
