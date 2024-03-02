@@ -71,9 +71,9 @@ void ft_print_memory(void *addr, unsigned int size)
      str_to_hex(addr, sizeof(addr));
 }
 
-int main()
-{
-     char *str = " Bonjour les amin";
-     ft_print_memory(str, sizeof(str));
-     return 0;
-}
+// int main()
+// {
+//      char *str = " Bonjour les amin";
+//      ft_print_memory(str, sizeof(str));
+//      return 0;
+//}
