@@ -52,16 +52,17 @@ void *str_to_hex(void *addr, unsigned int size)
 }
 void ft_print_memory(void *addr, unsigned int size)
 {
+     (void)size;
      char *hex_char = "0123456789abcdef";
      unsigned long addr_lng = (unsigned long)addr;
      // printf(" addr:  %p \n ", (void *)addr);
      // printf(" addr_lng:  %p \n ", (void *)addr_lng);
      char number[16];
 
-     unsigned int i = size;
-     while (i < size)
+     unsigned int i = 15;
+     while (i > 0)
      {
-          number[i++] = hex_char[addr_lng & 0xf];
+          number[i--] = hex_char[addr_lng & 0xf];
           // printf(" addr_lng: %ld \n ", addr_lng);
           addr_lng >>= 4;
      }
