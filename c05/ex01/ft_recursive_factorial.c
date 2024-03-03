@@ -9,10 +9,10 @@
 int ft_recursive_factorial(int nb)
 {
      int nb_fac = 1;
-     if (nb == 0)
-          return 0;
-     if (nb == 1)
+     if ( nb == 0)
           return (1);
+     if ( nb <= 0)
+          return (0);
      nb_fac *= nb * ft_recursive_factorial(nb - 1);
      return (nb_fac);
 }
