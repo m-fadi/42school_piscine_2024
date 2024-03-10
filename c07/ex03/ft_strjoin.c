@@ -59,11 +59,11 @@ char *ft_strjoin(int size, char **strs, char *sep)
 {
 
      if (size == 0)
-     {
+     {// if size =0 allocate a string with size one char and put \0 in it
           char *empty_string = (char *)malloc(sizeof(char));
           *empty_string = '\0';
           return empty_string;
-     }
+     }//strs_length = the length of every str in strs + (the length of the sep * number of sep needed  )
      int strs_total_length = strs_len(strs, size, sep);
      char *str_cat = (char *)malloc(sizeof(char) * (strs_total_length + 1));
      if (str_cat == NULL)
