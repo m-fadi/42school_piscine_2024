@@ -47,7 +47,6 @@ char *strs_cat(int size, char *str_cat, char **strs, char *sep)
           {
                char *ptr_sep = sep;
                while (*ptr_sep)
-
                     *str_cat++ = *ptr_sep++;
           }
           i++;
@@ -57,7 +56,6 @@ char *strs_cat(int size, char *str_cat, char **strs, char *sep)
 }
 char *ft_strjoin(int size, char **strs, char *sep)
 {
-
      if (size == 0)
      {// if size =0 allocate a string with size one char and put \0 in it
           char *empty_string = (char *)malloc(sizeof(char));
@@ -68,7 +66,6 @@ char *ft_strjoin(int size, char **strs, char *sep)
      char *str_cat = (char *)malloc(sizeof(char) * (strs_total_length + 1));
      if (str_cat == NULL)
           return NULL;
-
      return strs_cat(size, str_cat, strs, sep);
 }
 
