@@ -16,15 +16,8 @@ int str_len(char *s)
      return i;
 }
 
-char *ft_strjoin(int size, char **strs, char *sep)
+int strs_len(char **strs, int size, char *sep)
 {
-     if (size == 0)
-     {
-          char *empty_string = (char *)malloc(sizeof(char));
-          *empty_string = '\0';
-          return empty_string;
-     }
-
      int i = 0;
      int total_length = 0;
      int sep_length = str_len(sep);
@@ -34,40 +27,49 @@ char *ft_strjoin(int size, char **strs, char *sep)
                total_length += sep_length;
           i++;
      }
-
-   
-     char *conc_str = (char *)malloc(sizeof(char) * (total_length + 1));
-     if (conc_str == NULL)
-          return NULL; 
-
-     char *ptr_conc_str = conc_str;
-     i = 0;
-
+     return (total_length);
+}
+char *strs_cat(int size, char *str_cat, char **strs, char *sep)
+{
+     char *ptr_str_cat = str_cat;
+     int i = 0;
      // Copy strings and separators into the concatenated string
      while (i < size)
      {
           char *ptr_str = strs[i];
           while (*ptr_str)
           {
-               *conc_str = *ptr_str;
+               *str_cat = *ptr_str;
                ptr_str++;
-               conc_str++;
+               str_cat++;
           }
           if (i < size - 1)
           {
                char *ptr_sep = sep;
                while (*ptr_sep)
-               {
-                    *conc_str = *ptr_sep;
-                    ptr_sep++;
-                    conc_str++;
-               }
+
+                    *str_cat++ = *ptr_sep++;
           }
           i++;
      }
+     *str_cat = '\0';
+     return ptr_str_cat;
+}
+char *ft_strjoin(int size, char **strs, char *sep)
+{
 
-     *conc_str = '\0';    
-     return ptr_conc_str;
+     if (size == 0)
+     {
+          char *empty_string = (char *)malloc(sizeof(char));
+          *empty_string = '\0';
+          return empty_string;
+     }
+     int total_length = strs_len(strs, size, sep);
+     char *str_cat = (char *)malloc(sizeof(char) * (total_length + 1));
+     if (str_cat == NULL)
+          return NULL;
+
+     return strs_cat(size, str_cat, strs, sep);
 }
 
 // int main()
@@ -78,7 +80,7 @@ char *ft_strjoin(int size, char **strs, char *sep)
 //      char *strs[] = {s1, s2, s3, NULL};
 //      char *sep = ", ";
 
-//      char *result = ft_strjoin(3, strs, sep); 
+//      char *result = ft_strjoin(3, strs, sep);
 //      printf("Concatenated string: %s\n", result);
 
 //      free(result);
