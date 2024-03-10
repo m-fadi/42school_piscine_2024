@@ -64,8 +64,8 @@ char *ft_strjoin(int size, char **strs, char *sep)
           *empty_string = '\0';
           return empty_string;
      }
-     int total_length = strs_len(strs, size, sep);
-     char *str_cat = (char *)malloc(sizeof(char) * (total_length + 1));
+     int strs_total_length = strs_len(strs, size, sep);
+     char *str_cat = (char *)malloc(sizeof(char) * (strs_total_length + 1));
      if (str_cat == NULL)
           return NULL;
 
