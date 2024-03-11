@@ -38,44 +38,38 @@ int ft_strcmp(char *s1, char *s2)
 
 int ft_base(char *str, char *base)
 {
-     // char **bases= {"01", "1234567", "0123456789", "0123456789ABCDEF"};
+     char *bases[] = {"01", "01234567", "0123456789", "0123456789ABCDEF"};
      char *str_ptr = str;
-     // char *base_ptr = base;
-     // int i =0;
-     // while (i < 4)
-     // {
-     //      while (!ft_strcmp(*bases[i], base))
-     //           {
-     //                bases[i]++;
-     //                base++;
-     //           }
-     //           i++;
-     // }
-     // return (str_len(bases[i]));
+     char *base_ptr = base;
+     int i = 0;
+     while (i < 4)
+     {
+          if (ft_strcmp(bases[i], base) == 0)
+               return (str_len(bases[i]));
+          i++;
+     }
+     //     if (!ft_strcmp(str, "01"))
+     //     {
+     //          return (2);
+     //          str = str_ptr;
+     //     }
+     //     else if (!ft_strcmp(str, "01234567"))
+     //     {
+     //          return (8);
+     //          str = str_ptr;
+     //     }
+     //     else if (!ft_strcmp(str, "0123456789"))
+     //     {
+     //          return (10);
+     //          str = str_ptr;
+     //     }
+     //     else if (!ft_strcmp(str, "0123456789ABCDEF"))
+     //     {
+     //          return (16);
+     //          str = str_ptr;
+     //     }
 
-
-         if (!ft_strcmp(str, "01"))
-         {
-              return (2);
-              str = str_ptr;
-         }
-         else if (!ft_strcmp(str, "01234567"))
-         {
-              return (8);
-              str = str_ptr;
-         }
-         else if (!ft_strcmp(str, "0123456789"))
-         {
-              return (10);
-              str = str_ptr;
-         }
-         else if (!ft_strcmp(str, "0123456789ABCDEF"))
-         {
-              return (16);
-              str = str_ptr;
-         }
-
-         return (0);
+     // return (0);
 }
 void ft_putnbr_base(int nbr, char *base)
 {
@@ -108,9 +102,9 @@ void ft_putnbr_base(int nbr, char *base)
      }
 }
 
-int main()
-{
-     char *base = "0123456789ABCDEF";
+// int main()
+// {
+//      char *base = "01234567";
 
-     ft_putnbr_base(15123, base);
-}
+//      ft_putnbr_base(8, base);
+// }
