@@ -13,6 +13,8 @@
 // //  base contains the same character twice;
 // //  base contains + or -;
 // // • Here’s how it should be prototyped:
+
+//This code is missing the conditions and tested using only Mini Molinette
 #include <unistd.h>
 #include <stdio.h>
 void ft_putchar(char c)
