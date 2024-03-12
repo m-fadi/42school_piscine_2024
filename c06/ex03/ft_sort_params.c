@@ -36,28 +36,20 @@ void swap(char *s1, char *s2)
 void sort(char **s, int count)
 {
 
-     char *ptr = *s;
+     //char *ptr = *s;
      int i = 2;
 
      while (i < count)
      {
-          // printf("%s", s[i]);
           while (*s[i])
           {
                // printf("%s ", s[3]);
                if (str_comb(s[i - 1], s[i]))
-               {
                     swap(s[i - 1], s[i]);
-                    // printf("%s", s[i]);
-               }
                s[i]++;
           }
-          // write(1, "\n", 1);
-          // printf("%s", s[i]);
-          // put_str(s[i]);
           i++;
      }
-     // while(i < count)
 }
 
 int main(int ac, char **av)
