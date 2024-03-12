@@ -14,6 +14,7 @@ int str_len(char *s)
           i++;
      return (i);
 }
+
 int str_comb(char *s1, char *s2)
 {
      while (*s1 || *s2)
@@ -21,6 +22,7 @@ int str_comb(char *s1, char *s2)
                return (*s1 - *s2);
      return (*s1 - *s2);
 }
+
 void put_str(char *str)
 {
      while (*str)
@@ -33,6 +35,7 @@ void swap(char *s1, char *s2)
      *s1 = *s2;
      *s2 = tmp;
 }
+
 void sort(char **s, int count)
 {
 
