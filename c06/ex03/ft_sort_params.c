@@ -6,7 +6,6 @@
 // • One argument per line.
 #include <stdio.h>
 #include <unistd.h>
-
 int str_len(char *s)
 {
      int i = 0;
@@ -14,24 +13,28 @@ int str_len(char *s)
           i++;
      return (i);
 }
-
-int str_comb(char *s1, char *s2)
-{
-     while (*s1 || *s2)
-          if (*s1++ != *s2++)
-               return (*s1 - *s2);
-     return (*s1 - *s2);
-}
-
 void put_str(char *str)
 {
      while (*str)
-          write(1, str++, str_len(str));
+     {
+          write(1, str, str_len(str));
+          str++;
+     }
 }
 
-void swap(char *s1, char *s2)
+int str_comb(char *s1, char *s2)
 {
-     char tmp = *s1;
+     while ((*s1 || *s2) && *s1 == *s2)
+     {
+          s1++;
+          s2++;
+     }
+     return (*s1 - *s2);
+}
+
+void swap(char **s1, char **s2)
+{
+     char *tmp = *s1;
      *s1 = *s2;
      *s2 = tmp;
 }
@@ -39,19 +42,20 @@ void swap(char *s1, char *s2)
 void sort(char **s, int count)
 {
 
-     //char *ptr = *s;
-     int i = 2;
-
+     // char *ptr = *s;
+     int i = 1;
      while (i < count)
      {
-          while (*s[i])
+
+          while (s[i])
           {
                // printf("%s ", s[3]);
-               if (str_comb(s[i - 1], s[i]))
-                    swap(s[i - 1], s[i]);
-               s[i]++;
+               if (str_comb(s[i - 1], s[i]) > 0)
+                    swap(&s[i - 1], &s[i]);
+               i++;
           }
-          i++;
+          count--;
+          i = 1;
      }
 }
 
@@ -65,13 +69,9 @@ int main(int ac, char **av)
           write(1, "\n", 1);
           return (0);
      }
-     // str_len("123");
-     // put_str("str");
      sort(av, ac);
-     //return (0);
      while (i < ac)
      {
-          // sort(av);
           while (*av[i])
                write(1, av[i]++, 1);
           write(1, "\n", 1);
