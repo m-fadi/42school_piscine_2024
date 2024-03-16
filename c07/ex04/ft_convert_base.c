@@ -13,7 +13,9 @@
 
 // Files to turn in : ft_convert_base.c, ft_convert_base2.c
 //  Allowed functions : malloc, free
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 void ft_putchar(char c)
 {
@@ -28,6 +30,16 @@ int str_len(char *s)
     return (i);
 }
 
+char *ft_str_to_lowercase(char *str)
+{
+    while (*str)
+    {
+        if (*str <= 'Z' && *str >= 'A')
+            *str += 32;
+        str++;
+    }
+    return (str);
+}
 int base_is_valid(char *str)
 {
     int i = 1;
@@ -70,11 +82,14 @@ int atoi_16(char *str, int number)
 
     return (number);
 }
-convert_to_decimal(char *nbr, char *base_from)
+char *convert_to_decimal(char *nbr, char *base_from)
 {
     // convert the string nbr to decimal number
-    char *hex_str= "0123456789abcdef"
 
+    char *hex_str = "0123456789abcdef";
+    char *nbr_lower = ft_str_to_lowercase(nbr);
+    printf("%s", nbr_lower);
+    return (nbr_lower);
 }
 
 char *ft_convert_base(char *nbr, char *base_from, char *base_to)
@@ -93,10 +108,28 @@ char *ft_convert_base(char *nbr, char *base_from, char *base_to)
     }
 
     int base_len = str_len(base_to);
-    int decimal_number = convert_to_decimal(nbr, base_from);
-    if (base_len <= 10)
-        converted_num = atoi_smaller_10(nbr, converted_num, base_len, base_to);
-    else if (base_len == 16)
-        converted_num = atoi_16(nbr, converted_num);
-    return (converted_num * sign);
+    // int decimal_number = convert_to_decimal(nbr, base_from);
+
+    // if (base_len <= 10)
+    //     converted_num = atoi_smaller_10(nbr, converted_num, base_len, base_to);
+    // else if (base_len == 16)
+    //     converted_num = atoi_16(nbr, converted_num);
+    // return (converted_num * sign);
+}
+
+int main()
+{
+    char *base_from = "0123456789";
+    char *nbr_literal = "255Dc";
+    char *nbr = malloc(strlen(nbr_literal) + 1); // Allocate memory
+    if (nbr == NULL)
+    {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    strcpy(nbr, nbr_literal); // Copy string literal to allocated memory
+    ft_str_to_lowercase(nbr); // Convert to lowercase
+    printf("%s\n", nbr);      // Print the modified string
+    free(nbr);                // Free allocated memory
+    return 0;
 }
