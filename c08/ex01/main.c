@@ -28,6 +28,7 @@ void ft_putstr(char *str)
 {
      while (*str)
           write(1, str++, 1);
+     write(1, "\n", 1);
 }
 t_bool ft_is_even(int nbr)
 {
