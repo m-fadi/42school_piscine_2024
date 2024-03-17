@@ -12,15 +12,11 @@
 // • We’ll test your function with our ft_strs_to_tab(previous exercise).
 // Make it work according to this !
 
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include "ft_stock_str.h"
-
-void ft_putchar(char *s)
-{
-     while (*s++)
-          write(1, s, str_ren(s));
-}
+#include <string.h>
+#include <stdio.h>
 
 int str_len(char *s)
 {
@@ -28,6 +24,11 @@ int str_len(char *s)
      while (*s++)
           i++;
      return (i);
+}
+void ft_putchar(char *s)
+{
+     while (*s++)
+          write(1, s, str_len(s));
 }
 char *str_cpy(char *str, char *cpy)
 {
@@ -55,29 +56,47 @@ struct s_stock_str *ft_strs_to_tab(int ac, char **av)
           arr[i].str = av[i];
           arr[i].copy = strcpy;
           // t_stock_str new_str = {.size = strlen, .str = av[i], .copy = strcpy};
-          // printf("size:%d\n", arr[i].size);
-          // printf("str: %s\n", arr[i].str);
-          // printf("cpy: %s\n", arr[i].copy);
 
           i++;
      }
      // arr[ac].size = 0;
      // arr[ac].str = NULL;
      // arr[ac].copy = NULL;
+
      return arr;
 }
 
+#include "ft_stock_str.h"
+
 void ft_show_tab(struct s_stock_str *par)
 {
-     int i = 0;
-     int par_len = strlen(par);
-     while(i < par_len -1)
-     ft_putchar(par[i].size + '0');
+     while (par && par->str != NULL)
+     {
+          printf("String: %s\n", par->str);
+          printf("Size: %d\n", par->size);
+          printf("Copy: %s\n", par->copy);
+          par++;
+     }
 }
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-     //printf("%s\n", av[1]);
-     ft_strs_to_tab(ac, av);
-         //printf("%d\n", ft_strs_to_tab(ac, av)[0].size);
+     struct s_stock_str *arr = ft_strs_to_tab(argc, argv);
+     if (arr == NULL)
+     {
+          printf("Error: Unable to create array.\n");
+          return 1;
+     }
+
+     // Display the content of the array
+     ft_show_tab(arr);
+
+     // Free allocated memory
+     for (int i = 0; arr[i].str != NULL; i++)
+     {
+          free(arr[i].copy);
+     }
+     free(arr);
+
+     return 0;
 }
