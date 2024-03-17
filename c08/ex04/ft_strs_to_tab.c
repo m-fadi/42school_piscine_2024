@@ -20,39 +20,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_stock_str.h"
-int str_len(char *str)
+int str_len(char *s)
 {
      int i = 0;
-     while (*str++)
+     while (*s++)
           i++;
      return (i);
 }
-char *str_cpy(char *str, char *cpy, int strlen)
+char *str_cpy(char *str, char *cpy)
 {
-     
-     int i = 0;
      while (*str)
           *cpy++ = *str++;
-     *cpy = 0;
+     *cpy = '\0';
      return (cpy);
 }
+
 struct s_stock_str *ft_strs_to_tab(int ac, char **av)
 {
-     int i = 1;
-     while (i < ac)
+     struct s_stock_str *arr = malloc((ac+1) * sizeof(struct s_stock_str));
+     if (arr == NULL)
      {
-          while (*av[i])
-          {
-               int strlen = str_len(av[i]);
-               printf("%d", strlen);
-               char strcpy= (char *)malloc(strlen * sizeof(char));
-               str_cpy(av[i], strcpy, strlen);
-               
-          }
+          printf("Memory allocation failed\n");
+          return NULL;
      }
+     int i = 1;
+      while (i < ac)
+     {
+          int strlen = str_len(av[i]);
+          char *strcpy=(char *)malloc(sizeof(char)*(strlen+1));
+          str_cpy(av[i], strcpy);  
+           arr[i].size = strlen;
+           arr[i].str = av[i];
+           arr[i].copy = strcpy;
+           // t_stock_str new_str = {.size = strlen, .str = av[i], .copy = strcpy};
+           printf("size:%d\n", arr[i].size);
+           printf("str: %s\n", arr[i].str);
+           printf("cpy: %s\n", arr[i].copy);
+
+           i++;
+     }
+     // arr[ac].size = 0;
+     // arr[ac].str = NULL;
+     // arr[ac].copy = NULL;
+     return arr;
 }
 
-int main (int ac, char **av)
-{
-     printf("%d\n", ft_strs_to_tab(ac, av));
-}
+// int main(int ac, char **av)
+// {
+//      //printf("%s\n", av[1]);
+//      ft_strs_to_tab(ac, av);
+//          //printf("%d\n", ft_strs_to_tab(ac, av)[0].size);
+// }
