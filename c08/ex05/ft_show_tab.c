@@ -1,16 +1,3 @@
-// Create a function that displays the content of the array created by the previous
-//     function.
-// • Here’s how it should be prototyped : void
-//                                         ft_show_tab(struct s_stock_str *par);
-// • The structure will be the same as the previous exercise and will be defined in the
-//     ft_stock_str.h file
-// • For each element,
-//     we’ll display :
-//  the string followed by a ’\n’
-//  the size followed by a ’\n’
-//  the copy of the string(that could have been modified) followed by a ’\n’
-// • We’ll test your function with our ft_strs_to_tab(previous exercise).
-// Make it work according to this !
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -25,78 +12,72 @@ int str_len(char *s)
           i++;
      return (i);
 }
-void ft_putchar(char *s)
+void ft_put_str(char *s)
 {
-     while (*s++)
-          write(1, s, str_len(s));
+     write(1, s, str_len(s));
+     write(1, "\n", 1);
 }
-char *str_cpy(char *str, char *cpy)
-{
-     while (*str)
-          *cpy++ = *str++;
-     *cpy = '\0';
-     return (cpy);
-}
+// char *str_cpy(char *str, char *cpy)
+// {
+//      while (*str)
+//           *cpy++ = *str++;
+//      *cpy = '\0';
+//      return (cpy);
+// }
 
-struct s_stock_str *ft_strs_to_tab(int ac, char **av)
-{
-     struct s_stock_str *arr = malloc((ac + 1) * sizeof(struct s_stock_str));
-     if (arr == NULL)
-     {
-          printf("Memory allocation failed\n");
-          return NULL;
-     }
-     int i = 1;
-     while (i < ac)
-     {
-          int strlen = str_len(av[i]);
-          char *strcpy = (char *)malloc(sizeof(char) * (strlen + 1));
-          str_cpy(av[i], strcpy);
-          arr[i].size = strlen;
-          arr[i].str = av[i];
-          arr[i].copy = strcpy;
-          // t_stock_str new_str = {.size = strlen, .str = av[i], .copy = strcpy};
+// struct s_stock_str *ft_strs_to_tab(int ac, char **av)
+// {
+//      struct s_stock_str *arr = malloc((ac + 1) * sizeof(struct s_stock_str));
+//      if (arr == NULL)
+//      {
+//           printf("Memory allocation failed\n");
+//           return NULL;
+//      }
+//      int i = 1;
+//      int j = 0;
+//      while (i < ac)
+//      {
+//           int strlen = str_len(av[i]);
+//           char *strcpy = (char *)malloc(sizeof(char) * (strlen + 1));
+//           str_cpy(av[i], strcpy);
+//           arr[j].size = strlen;
+//           arr[j].str = av[i];
+//           arr[j].copy = strcpy;
 
-          i++;
-     }
-     // arr[ac].size = 0;
-     // arr[ac].str = NULL;
-     // arr[ac].copy = NULL;
+//           // t_stock_str new_str = {.size = strlen, .str = av[i], .copy = strcpy};
+//           j++;
+//           i++;
+//      }
 
-     return arr;
-}
-
-#include "ft_stock_str.h"
+//      return arr;
+// }
 
 void ft_show_tab(struct s_stock_str *par)
 {
+     // printf("String: %s\n", par->copy);
      while (par && par->str != NULL)
      {
-          printf("String: %s\n", par->str);
-          printf("Size: %d\n", par->size);
-          printf("Copy: %s\n", par->copy);
+          ft_put_str(par->str);
+          ft_put_str(par->copy);
+          // write(1,&(par->size+'0'),1);
+
           par++;
      }
 }
 
-int main(int argc, char **argv)
-{
-     struct s_stock_str *arr = ft_strs_to_tab(argc, argv);
-     if (arr == NULL)
-     {
-          printf("Error: Unable to create array.\n");
-          return 1;
-     }
+// int main(int argc, char **argv)
+// {
+//      struct s_stock_str *arr = ft_strs_to_tab(argc, argv);
+//      if (arr == NULL)
+//      {
+//           printf("Error: Unable to create array.\n");
+//           return 1;
+//      }
 
-     // Display the content of the array
-     ft_show_tab(arr);
+//      // Display the content of the array
+//      ft_show_tab(arr);
 
-     // Free allocated memory
-     for (int i = 0; arr[i].str != NULL; i++)
-     {
-          free(arr[i].copy);
-     }
-     free(arr);
+//      // Free allocated memory
 
-     return 0;
-}
+//      return 0;
+// }
