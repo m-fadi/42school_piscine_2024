@@ -1,11 +1,22 @@
-
+// Create a function that displays the content of the array created by the previous
+//     function.
+// • Here’s how it should be prototyped : void
+//                                         ft_show_tab(struct s_stock_str *par);
+// • The structure will be the same as the previous exercise and will be defined in the
+//     ft_stock_str.h file
+// • For each element,
+//     we’ll display :
+//  the string followed by a ’\n’
+//  the size followed by a ’\n’
+//  the copy of the string(that could have been modified) followed by a ’\n’
+// • We’ll test your function with our ft_strs_to_tab(previous exercise).Make it work according to this !
 #include <unistd.h>
 #include <stdlib.h>
 #include "ft_stock_str.h"
 #include <string.h>
-#include <stdio.h>
 
-int str_len(char *s)
+
+    int str_len(char *s)
 {
      int i = 0;
      while (*s++)
@@ -17,13 +28,34 @@ void ft_put_str(char *s)
      write(1, s, str_len(s));
      write(1, "\n", 1);
 }
-// char *str_cpy(char *str, char *cpy)
-// {
-//      while (*str)
-//           *cpy++ = *str++;
-//      *cpy = '\0';
-//      return (cpy);
-// }
+char *str_cpy(char *str, char *cpy)
+{
+     while (*str)
+          *cpy++ = *str++;
+     *cpy = '\0';
+     return (cpy);
+}
+//****************************
+void ft_putchar(char c)
+{
+
+     write(1, &c, 1);
+}
+//****************************
+void ft_putnbr(int nb)
+{
+     if (nb < 0)
+     {
+          ft_putchar('-');
+          nb *= -1;
+     }
+
+     if (nb >= 10)
+          ft_putnbr(nb / 10);
+
+     ft_putchar(nb % 10 + '0');
+}
+
 
 // struct s_stock_str *ft_strs_to_tab(int ac, char **av)
 // {
@@ -54,12 +86,14 @@ void ft_put_str(char *s)
 
 void ft_show_tab(struct s_stock_str *par)
 {
-     // printf("String: %s\n", par->copy);
+     printf("String: %s\n", par->copy);
      while (par && par->str != NULL)
      {
           ft_put_str(par->str);
           ft_put_str(par->copy);
-          // write(1,&(par->size+'0'),1);
+          //printf("String: %d\n", par->size);
+              ft_putnbr(par->size);
+           write(1,"\n",1);
 
           par++;
      }
@@ -74,10 +108,10 @@ void ft_show_tab(struct s_stock_str *par)
 //           return 1;
 //      }
 
-//      // Display the content of the array
+
 //      ft_show_tab(arr);
 
-//      // Free allocated memory
+
 
 //      return 0;
 // }
