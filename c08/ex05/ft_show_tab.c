@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "ft_stock_str.h"
 #include <string.h>
+#include <stdio.h>
 
 
     int str_len(char *s)
@@ -57,13 +58,20 @@ void ft_putnbr(int nb)
 }
 
 
-// struct s_stock_str *ft_strs_to_tab(int ac, char **av)
+
+//*****************************************************
+
+// NOTE saying (struct s_stock_str *ft_strs_to_tab() is same as t_stock_str *ft_strs_to_tab())
+
+//*****************************************************
+
+
+
+// t_stock_str *ft_strs_to_tab(int ac, char **av)
 // {
 //      struct s_stock_str *arr = malloc((ac + 1) * sizeof(struct s_stock_str));
 //      if (arr == NULL)
-//      {
-//           printf("Memory allocation failed\n");
-//           return NULL;
+//        return NULL;
 //      }
 //      int i = 1;
 //      int j = 0;
@@ -84,7 +92,7 @@ void ft_putnbr(int nb)
 //      return arr;
 // }
 
-void ft_show_tab(struct s_stock_str *par)
+void ft_show_tab(t_stock_str *par)
 {
      printf("String: %s\n", par->copy);
      while (par && par->str != NULL)
@@ -103,8 +111,6 @@ void ft_show_tab(struct s_stock_str *par)
 // {
 //      struct s_stock_str *arr = ft_strs_to_tab(argc, argv);
 //      if (arr == NULL)
-//      {
-//           printf("Error: Unable to create array.\n");
 //           return 1;
 //      }
 
