@@ -59,9 +59,9 @@ struct s_stock_str *ft_strs_to_tab(int ac, char **av)
 
            i++;
      }
-     // arr[ac].size = 0;
-     // arr[ac].str = NULL;
-     // arr[ac].copy = NULL;
+     arr[ac].size = 0;
+     arr[ac].str = NULL;
+     arr[ac].copy = NULL;
      return arr;
 }
 
