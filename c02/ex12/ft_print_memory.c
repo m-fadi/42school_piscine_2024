@@ -24,7 +24,7 @@
 // 0000000107ff9f90 : 0a09 6c6f 6c2e 6c6f 6c0a 2000 ..lol.lol..$ $ >
 // • Here’s how it should be prototyped :;
 // • It should return addr.
-// #include <stdio.h>
+ #include <stdio.h>
 #include <unistd.h>
 
 // #include <unistd.h>
@@ -55,8 +55,8 @@ void ft_print_memory(void *addr, unsigned int size)
      (void)size;
      char *hex_char = "0123456789abcdef";
      unsigned long addr_lng = (unsigned long)addr;
-     // printf(" addr:  %p \n ", (void *)addr);
-     // printf(" addr_lng:  %p \n ", (void *)addr_lng);
+      printf(" addr:  %p \n ", (void *)&addr);
+      //printf(" addr_lng:  %p \n ", (void *)&addr_lng);
      char number[16];
 
      unsigned int i = 15;
@@ -71,9 +71,9 @@ void ft_print_memory(void *addr, unsigned int size)
      str_to_hex(addr, sizeof(addr));
 }
 
-// int main()
-// {
-//      char *str = " Bonjour les amin";
-//      ft_print_memory(str, sizeof(str));
-//      return 0;
-//}
+int main()
+{
+     char *str = " Bonjour les amin";
+     ft_print_memory(str, sizeof(str));
+     return 0;
+}
